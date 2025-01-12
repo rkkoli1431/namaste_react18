@@ -8,7 +8,7 @@ const Body = () =>{
 
     const [listOfRestaurant,setOfListOfRestaurant] = useState([]);
     const [searchText, setSearchText] = useState("");
-    // const [filteredRestaurant ,setFilteredRestaurant]= useState();
+    const [filteredRestaurant ,setFilteredRestaurant]= useState([]);
 
     // Whenever state varibles updated , react triggers a reconciliation cycle (re-renders the component)
 
@@ -26,6 +26,7 @@ const Body = () =>{
         console.log(json);
         // console.log(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setOfListOfRestaurant(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurant(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
     if(listOfRestaurant.length === 0){
         return <Shimmer/>
@@ -43,10 +44,11 @@ const Body = () =>{
                 <button onClick={()=>{
                     // Fitered Search Restaurant
                     console.log(searchText);
-                    const filteredRestaurant = listOfRestaurant.filter((res)=>{
-                        res.info.name.toLowerCase().includes(searchText.toLowerCase());
-                    });
-                    setOfListOfRestaurant(filteredRestaurant);
+                    const filteredRestaurant = listOfRestaurant.filter((res)=>
+                        // res.info.name.includes(searchText)
+                        res.info.name.toLowerCase().includes(searchText.toLowerCase())
+                    );
+                    setFilteredRestaurant(filteredRestaurant)
                 }}>Search</button>
             </div>
 
@@ -58,7 +60,7 @@ const Body = () =>{
             </div>
             <div className="res-container">
             {
-                listOfRestaurant.map((restaurant)=>(
+                filteredRestaurant.map((restaurant)=>(
                 <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
                 ))
             }
