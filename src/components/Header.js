@@ -1,6 +1,7 @@
 import { TiShoppingCart } from "react-icons/ti";
 import { LOGO_URL } from "../utils/constents";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 const Header = () =>{
     const [btnName, setBtnName] = useState("Login");
     console.log("Header Renderd");
@@ -18,9 +19,18 @@ const Header = () =>{
             </div>
         <div className="nav-items">
             <ul>
-                <li>Home</li>
-                <li>About Us</li>
-                <li>Contact Us</li>
+                <li>
+                    <Link>Home</Link>
+                </li>
+
+                <li>
+                   <Link to="/about"> About Us</Link>
+                </li>
+                
+                <li>
+                    <Link>Contact Us</Link>
+                </li>
+
                 <li><TiShoppingCart /></li>
                 <button className="login-btn" onClick={()=>{
                     btnName === "Login" 
