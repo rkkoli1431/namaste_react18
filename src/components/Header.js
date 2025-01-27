@@ -28,7 +28,7 @@ const Header = () =>{
                 </li>
                 
                 <li>
-                    <Link>Contact Us</Link>
+                    <Link to="/contact">Contact Us</Link>
                 </li>
 
                 <li><TiShoppingCart /></li>
