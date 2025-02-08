@@ -12,14 +12,14 @@ const RestaurantMenu = ()=>{
         console.log(json);
         setResInfo(json.data);
     };
-    const {name,cuisines,costForTwoMessage} = resInfo?.cards[2].card?.card?.info;
+    const {name, cuisines,costForTwoMessage} = resInfo?.cards[2].card?.card?.info;
     return resInfo === null ? (
     <Shimmer/>
     ):(
         <div>
             <h1>{name} </h1>
-            <h2>{cuisines.join(",")}</h2>
-            <h3>{costForTwoMessage}</h3>
+            <p>{cuisines.join(",")} - {costForTwoMessage}</p>
+            {/* <h3>{resInfo?.cards[2].card?.card?.info?.costForTwoMessage}</h3> */}
             <h2>Menu</h2>
             <ul>
                 <li>Biryani</li>
