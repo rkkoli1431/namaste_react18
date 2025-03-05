@@ -1,4 +1,4 @@
-// import User from "./User";
+import User from "./User";
 import {Component} from "react";
 import UserClass from "./UserClass";
 
@@ -15,6 +15,7 @@ class About extends Component{
   //  console.log("Parent Render");
     return (
       <div className="about">
+        <User name={"Rupali"}/>
         <UserClass name={"Rahul class"} location={"Boradi"}/>     
       </div>
     );
