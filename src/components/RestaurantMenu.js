@@ -1,30 +1,35 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 const RestaurantMenu = ()=>{
-    const  [resInfo, setResInfo] = useState(null);
+
+    const [resInfo, setResInfo] = useState();
+
     useEffect(()=>{
         fetchMenu();
     },[]);
-
-    const fetchMenu = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=10576&catalog_qa=undefined&submitAction=ENTER");
+    
+    const fetchMenu = async () =>{
+        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=656392&catalog_qa=undefined&submitAction=ENTER");
         const json = await data.json();
         console.log(json);
         setResInfo(json.data);
-    };
-    const {name, cuisines,costForTwoMessage} = resInfo?.cards[2].card?.card?.info;
-    return resInfo === null ? (
-    <Shimmer/>
-    ):(
-        <div>
-            <h1>{name} </h1>
-            <p>{cuisines.join(",")} - {costForTwoMessage}</p>
-            {/* <h3>{resInfo?.cards[2].card?.card?.info?.costForTwoMessage}</h3> */}
-            <h2>Menu</h2>
+        console.log("hello");
+        console.log(resInfo?.cards[2]?.card?.card?.info?.name);
+    }
+    // if(resInfo === null) <Shimmer/>;
+
+    // console.log(resInfo?.cards[2]?.card?.card?.info?.name);
+    const {name,cuisines, costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info;
+
+    // const {itemCards} = resInfo?.cards?.card[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+    return  (
+        <div className="menu">
+            <h1>{name}</h1>
+            <h3></h3>
             <ul>
-                <li>Biryani</li>
-                <li>Pizza</li>
-                <li>Coffee</li>
+                <li></li>
+                <li>Burgers</li>
+                <li>Diet Coke</li>
             </ul>
         </div>
     );
